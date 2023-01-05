@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import TimerList from './TimerList';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Open up App.js to start working on your app! Let see if this works.</Text>
       <StatusBar style="auto" />
+      <TimerList />
     </View>
   );
 }
