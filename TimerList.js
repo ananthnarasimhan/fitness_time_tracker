@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, SafeAreaView } from "react-native";
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
 
 const ViewTypes = {
@@ -42,7 +42,7 @@ export default class TimerList extends React.Component {
         //NOTE: For complex lists LayoutProvider will also be complex it would then make sense to move it to a different file
         this._layoutProvider = new LayoutProvider(
             index => {
-                    return ViewTypes.FULL;
+                return ViewTypes.FULL;
             },
             (type, dim) => {
                 switch (type) {
@@ -97,8 +97,10 @@ export default class TimerList extends React.Component {
     }
 
     render() {
-        return <RecyclerListView style={{ width: '100%', minHeight: 1 }}
-            canChangeSize={true} layoutProvider={this._layoutProvider} dataProvider={this.state.dataProvider} rowRenderer={this._rowRenderer} />;
+        return (
+            <RecyclerListView style={{flex:1, width: '100%', minHeight: 1 }}
+                canChangeSize={true} layoutProvider={this._layoutProvider} dataProvider={this.state.dataProvider} rowRenderer={this._rowRenderer} />
+        )
     }
 }
 const styles = {
@@ -119,5 +121,20 @@ const styles = {
         alignItems: "center",
         flex: 1,
         backgroundColor: "#7cbb00"
-    }
+    },
+    touchableOpacityStyle: {
+        position: 'absolute',
+        width: 50,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 30,
+        bottom: 30,
+    },
+    floatingButtonStyle: {
+        resizeMode: 'contain',
+        width: 50,
+        height: 50,
+        //backgroundColor:'black'
+    },
 };
