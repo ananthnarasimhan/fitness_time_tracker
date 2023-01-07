@@ -63,18 +63,10 @@ export default class TimerList extends React.Component {
 
         //Since component should always render once data has changed, make data provider part of the state
         this.state = {
-            dataProvider: dataProvider.cloneWithRows(this._generateArray(10))
+            dataProvider: dataProvider.cloneWithRows(this.props.updateWorkout)
         };
     }
-
-    _generateArray(n) {
-        let arr = new Array(n);
-        for (let i = 0; i < n; i++) {
-            arr[i] = i;
-        }
-        return arr;
-    }
-
+    
     //Given type and data return the view component
     _rowRenderer(type, data) {
         //You can return any view here, CellContainer has no special significance
