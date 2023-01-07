@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Dimensions, SafeAreaView } from "react-native";
+import { View, Text, Dimensions } from "react-native";
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
 
 const ViewTypes = {
@@ -34,12 +34,6 @@ export default class TimerList extends React.Component {
             return r1 !== r2;
         });
 
-        //Create the layout provider
-        //First method: Given an index return the type of item e.g ListItemType1, ListItemType2 in case you have variety of items in your list/grid
-        //Second: Given a type and object set the height and width for that type on given object
-        //If you need data based check you can access your data provider here
-        //You'll need data in most cases, we don't provide it by default to enable things like data virtualization in the future
-        //NOTE: For complex lists LayoutProvider will also be complex it would then make sense to move it to a different file
         this._layoutProvider = new LayoutProvider(
             index => {
                 return ViewTypes.FULL;
@@ -88,6 +82,9 @@ export default class TimerList extends React.Component {
             case ViewTypes.FULL:
                 return (
                     <CellContainer style={styles.container}>
+                        <Text>
+                            {this.props.updateWorkout}
+                        </Text>
                         <Text>Data: {data}</Text>
                     </CellContainer>
                 );

@@ -1,21 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image, TouchableOpacity,} from 'react-native';
 import TimerList from './TimerList';
+import { useState } from 'react';
 
 export default function App() {
 
-  const clickHandler = () => {
-    //function to handle click on floating Action Button
-    alert('Floating Button Clicked');
-  };
+  const [data, setData] = useState('');
+  
+  const updateWorkout = () => {
+    setData("This is data from Parent Component to the Child Component.");
+  }
+
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app! Let see if this works.</Text>
       <StatusBar style="auto" />
-      <TimerList />
+      <TimerList 
+        updateWorkout={data}
+      />
       <TouchableOpacity
           activeOpacity={0.7}
-          onPress={clickHandler}
+          onPress={updateWorkout}
           style={styles.touchableOpacityStyle}>
           <Image
             //We are making FAB using TouchableOpacity with an image
